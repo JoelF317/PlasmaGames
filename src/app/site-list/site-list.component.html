@@ -1,0 +1,14 @@
+<ng-container *ngIf="site$ | async as site">
+
+    <section style="padding-top: 20px;">
+
+      <mat-card style="width: 400px; margin: auto;">
+
+          <mat-card-content>
+            <p>{{ site.site_name_long }}</p>
+          </mat-card-content>
+
+      </mat-card>
+    </section>
+
+</ng-container>
