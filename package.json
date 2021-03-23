@@ -24,6 +24,8 @@
     "@angular/router": "~11.2.6",
     "@angular/service-worker": "~11.2.6",
     "@apollo/client": "^3.0.0",
+    "@syncfusion/ej2-angular-charts": "^18.4.48",
+    "@syncfusion/ej2-ng-charts": "^16.2.50",
     "@types/highcharts": "^7.0.0",
     "apollo-angular": "^2.4.0",
     "apollo-boost": "^0.4.9",

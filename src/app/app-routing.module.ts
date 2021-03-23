@@ -13,12 +13,15 @@ const routes: Routes = [
   {
     path: ':loc',
     component: LaunchListComponent
+  },
+  {
+    path: 'stock/:dt',
+    component: StockChartComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  declarations: [StockChartComponent]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

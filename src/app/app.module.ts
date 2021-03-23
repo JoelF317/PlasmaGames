@@ -8,15 +8,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SiteListComponent } from './site-list/site-list.component';
 import { LaunchListComponent } from './launch-list/launch-list.component';
+import { StockChartComponent } from './stock-chart/stock-chart.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { ChartAllModule, RangeNavigatorAllModule} from '@syncfusion/ej2-angular-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     SiteListComponent,
-    LaunchListComponent
+    LaunchListComponent,
+    StockChartComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,9 @@ import { MatCardModule } from '@angular/material/card';
     GraphQLModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    ChartAllModule,
+    RangeNavigatorAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]

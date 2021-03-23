@@ -1,7 +1,6 @@
 import { SiteGQL } from './../services/SpaceXFrontEnd.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Component({

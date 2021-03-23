@@ -6,7 +6,7 @@
 
       <mat-card
         *ngFor="let launch of launchList"
-        [routerLink]="['/' , launch?.id]"
+        [routerLink]="['/stock/' , launch?.launch_date_utc]"
       >
         <mat-card-header>
           <img
@@ -45,3 +45,5 @@
     </section>
   </main>
 </ng-container>
+
+<router-outlet></router-outlet>

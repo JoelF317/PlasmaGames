@@ -14,11 +14,15 @@
           <mat-card-title>
             {{ site?.name }}
           </mat-card-title>
-
+          <mat-card-subtitle>
+            {{site?.status}}
+          </mat-card-subtitle>
 
         </mat-card-header>
 
-        <img
+        <a [href]="site?.wikipedia">Wikipedia Link</a>
+
+        <img matCardImage
             height="300"
             width="300"
             mat-card-avatar
@@ -27,6 +31,8 @@
             alt="Wiki pic of {{ site?.name }}"
           />
 
+
+          <p matCardContent>{{ site?.details }}</p>
 
       </mat-card>
     </section>
