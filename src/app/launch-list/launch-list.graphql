@@ -1,5 +1,8 @@
-query launchList($limit: Int!){
-  launchesPast(limit: $limit){
+query launchList($loc: String!){
+  launchesPast(find: {
+      site_id: $loc
+    }
+  ){
     id
     mission_name
     links {
@@ -10,5 +13,9 @@ query launchList($limit: Int!){
       rocket_name
     }
     launch_date_utc
+    launch_site{
+      site_name_long
+      site_id
+    }
   }
 }

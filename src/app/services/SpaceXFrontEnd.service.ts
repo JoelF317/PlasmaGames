@@ -1326,7 +1326,7 @@ export type CoreMission = {
 };
 
 export type LaunchListQueryVariables = Exact<{
-  limit: Scalars['Int'];
+  loc: Scalars['String'];
 }>;
 
 
@@ -1341,29 +1341,27 @@ export type LaunchListQuery = (
     )>, rocket?: Maybe<(
       { __typename?: 'LaunchRocket' }
       & Pick<LaunchRocket, 'rocket_name'>
+    )>, launch_site?: Maybe<(
+      { __typename?: 'LaunchSite' }
+      & Pick<LaunchSite, 'site_name_long' | 'site_id'>
     )> }
   )>>> }
 );
 
-export type SiteQueryVariables = Exact<{
-  id: Scalars['ID'];
-}>;
+export type SiteQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type SiteQuery = (
   { __typename?: 'Query' }
-  & { launch?: Maybe<(
-    { __typename?: 'Launch' }
-    & { launch_site?: Maybe<(
-      { __typename?: 'LaunchSite' }
-      & Pick<LaunchSite, 'site_id' | 'site_name_long'>
-    )> }
-  )> }
+  & { launchpads?: Maybe<Array<Maybe<(
+    { __typename?: 'Launchpad' }
+    & Pick<Launchpad, 'name' | 'details' | 'status' | 'id' | 'wikipedia'>
+  )>>> }
 );
 
 export const LaunchListDocument = gql`
-    query launchList($limit: Int!) {
-  launchesPast(limit: $limit) {
+    query launchList($loc: String!) {
+  launchesPast(find: {site_id: $loc}) {
     id
     mission_name
     links {
@@ -1374,37 +1372,42 @@ export const LaunchListDocument = gql`
       rocket_name
     }
     launch_date_utc
+    launch_site {
+      site_name_long
+      site_id
+    }
   }
 }
     `;
 
-@Injectable({
+  @Injectable({
     providedIn: 'root'
   })
   export class LaunchListGQL extends Apollo.Query<LaunchListQuery, LaunchListQueryVariables> {
     document = LaunchListDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
 export const SiteDocument = gql`
-    query site($id: ID!) {
-  launch(id: $id) {
-    launch_site {
-      site_id
-      site_name_long
-    }
+    query site {
+  launchpads {
+    name
+    details
+    status
+    id
+    wikipedia
   }
 }
     `;
 
-@Injectable({
+  @Injectable({
     providedIn: 'root'
   })
   export class SiteGQL extends Apollo.Query<SiteQuery, SiteQueryVariables> {
     document = SiteDocument;
-
+    
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
