@@ -1334,7 +1334,7 @@ export type LaunchListQuery = (
   { __typename?: 'Query' }
   & { launchesPast?: Maybe<Array<Maybe<(
     { __typename?: 'Launch' }
-    & Pick<Launch, 'id' | 'mission_name' | 'launch_date_utc'>
+    & Pick<Launch, 'id' | 'mission_name' | 'launch_date_local'>
     & { links?: Maybe<(
       { __typename?: 'LaunchLinks' }
       & Pick<LaunchLinks, 'flickr_images' | 'mission_patch_small'>
@@ -1371,7 +1371,7 @@ export const LaunchListDocument = gql`
     rocket {
       rocket_name
     }
-    launch_date_utc
+    launch_date_local
     launch_site {
       site_name_long
       site_id
@@ -1385,7 +1385,7 @@ export const LaunchListDocument = gql`
   })
   export class LaunchListGQL extends Apollo.Query<LaunchListQuery, LaunchListQueryVariables> {
     document = LaunchListDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
@@ -1407,7 +1407,7 @@ export const SiteDocument = gql`
   })
   export class SiteGQL extends Apollo.Query<SiteQuery, SiteQueryVariables> {
     document = SiteDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
